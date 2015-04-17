@@ -1,7 +1,41 @@
 <!doctype html>
 <html>
+	<head>
+		<title> 3L Laboratories </title>
+	</head>
+	
+	<body>
+	
+	<script src="three.min.js"></script>
+	<script src="http://mrdoob.github.com/three.js/examples/fonts/helvetiker_regular.typeface.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-<script src="three.js"></script>
-
+	<script>
+	var scene = new THREE.Scene();
+	var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 1, 10000);
+	var renderer = new THREE.WebGLRenderer();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+	
+	document.body.appendChild(renderer.domElement);
+	
+	var geometry = new THREE.TextGeometry("3L Labs");
+	var material = new THREE.MeshBasicMaterial({color: 0xff0000});
+	var text = new THREE.Mesh(geometry, material);
+	scene.add(text);
+	
+	camera.position.z = 1000;
+	
+	
+	function render(){
+		requestAnimationFrame(render);
+		renderer.render(scene, camera);
+		text.rotation.z += 0.01;
+		text.rotation.y += 0.01;
+		text.rotation.x += 0.01;
+		
+	}
+	
+	render();
+	
+	</script>
+</body>
 </html>
